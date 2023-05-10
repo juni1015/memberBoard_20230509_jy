@@ -22,6 +22,18 @@
         select * from memberboard_member_table where memberEmail = #{memberEmail} and memberPassword = #{memberPassword}
     </select>
 
+    <select id="findAll" resultType="member">
+        select * from memberboard_member_table
+    </select>
+
+    <select id="findById" parameterType="Long" resultType="member">
+        select * from memberboard_member_table where id = #{id}
+    </select>
+
+    <select id="findFile" parameterType="Long" resultType="memberProfile">
+        select * from memberboard_memberfile_table where memberId = #{memberId}
+    </select>
+
 </mapper>
 
 

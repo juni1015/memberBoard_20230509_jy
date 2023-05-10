@@ -8,14 +8,14 @@
                 <i class="bi bi-house"></i>
             </a>
         </li>
-        <li>
-            <a href="/member/save">회원가입</a>
-        </li>
-        <li>
-            <a href="/member/login">로그인</a>
-        </li>
-        <li>
-            <a href="/board/">글목록</a>
+<%--        <li>--%>
+<%--            <a href="/member/save">회원가입</a>--%>
+<%--        </li>--%>
+<%--        <li>--%>
+<%--            <a href="/member/login">로그인</a>--%>
+<%--        </li>--%>
+        <li class="menu-name" id="menu-area">
+
         </li>
         <li class="login-name" id="login-area">
 
@@ -25,13 +25,27 @@
 
 <script>
     const loginArea = document.getElementById("login-area");
+    const menuArea = document.getElementById("menu-area");
     const loginEmail = '${sessionScope.loginEmail}';
-    console.log(loginEmail.length);
 
     if (loginEmail.length != 0) {
-        loginArea.innerHTML = "<a href='/mypage' style='color: black;'>"+loginEmail +"님 환영해요!</a>"+
-                                "<a href='/logout'>logout</a>";
+        if (loginEmail == "admin") {
+            menuArea.innerHTML = "<a href='/board/'>글작성</a>" +
+                                    "<a href='/board/'>글목록</a>" +
+                                    "<a href='/member/mypage'>마이페이지</a>" +
+                                    "<a href='/member/list'>관리자</a>";
+            loginArea.innerHTML = "<a href='/mypage' style='color: black;'>"+loginEmail +"님 환영해요!</a>"+
+                "<a href='/member/logout'>logout</a>";
+        } else {
+            menuArea.innerHTML = "<a href='/board/'>글작성</a>" +
+                                    "<a href='/board/'>글목록</a>" +
+                                    "<a href='/member/mypage'>마이페이지</a>";
+            loginArea.innerHTML = "<a href='/mypage' style='color: black;'>"+loginEmail +"님 환영해요!</a>"+
+                "<a href='/member/logout'>logout</a>";
+        }
     } else {
-        loginArea.innerHTML = "<a href='/member/login'>login</a>";
+        menuArea.innerHTML = "<a href='/board/'>글목록</a>";
+        loginArea.innerHTML = "<a href='/member/login'>login</a>" +
+                                "<a href='/member/save'>join</a>";
     }
 </script>

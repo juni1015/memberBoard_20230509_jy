@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class MemberService {
@@ -46,5 +47,17 @@ public class MemberService {
 
     public MemberDTO login(MemberDTO memberDTO) {
         return memberRepository.login(memberDTO);
+    }
+
+    public List<MemberDTO> findAll() {
+        return memberRepository.findAll();
+    }
+
+    public MemberDTO findById(Long id) {
+        return memberRepository.findById(id);
+    }
+
+    public MemberFileDTO findFile(Long id) {
+        return memberRepository.findFile(id);
     }
 }
