@@ -51,7 +51,7 @@ public class MemberController {
         MemberDTO dto = memberService.login(memberDTO);
         if (dto != null) {
             session.setAttribute("loginEmail", memberDTO.getMemberEmail());
-            return "memberPages/memberMyPage";
+            return "redirect:/board/list";
         } else {
             return "memberPages/memberLoginError";
         }
