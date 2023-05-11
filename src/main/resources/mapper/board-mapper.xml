@@ -18,6 +18,42 @@
         select * from memberboard_board_table
     </select>
 
+    <select id="pagingList" parameterType="java.util.HashMap" resultType="board">
+        select * from memberboard_board_table order by id desc limit #{start}, #{limit}
+    </select>
+
+    <select id="count" resultType="Integer">
+        select count(id) from memberboard_board_table
+    </select>
+
+    <select id="searchList" parameterType="java.util.HashMap" resultType="board">
+        select * from memberboard_board_table where ${type} like concat('%', #{q}, '%') order by id desc limit #{start}, #{limit}
+    </select>
+
+    <select id="searchCount" parameterType="java.util.HashMap" resultType="Integer">
+        select count(id) from memberboard_board_table where ${type} like concat('%', #{q}, '%')
+    </select>
+
+    <update id="hitsUp" parameterType="Long">
+        update memberboard_board_table set boardHits = boardHits + 1 where id = #{id}
+    </update>
+
+    <select id="findById" parameterType="Long" resultType="board">
+        select * from memberboard_board_table where id = #{id}
+    </select>
+
+    <select id="findFile" parameterType="Long" resultType="boardFile">
+        select * from memberboard_boardfile_table where boardId = #{boardId}
+    </select>
+
+    <update id="update" parameterType="board">
+        update memberboard_board_table set boardTitle = #{boardTitle}, boardContents = #{boardContents} where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        delete from memberboard_board_table where id = #{id}
+    </delete>
+
 </mapper>
 
 
