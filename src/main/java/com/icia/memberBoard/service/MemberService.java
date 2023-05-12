@@ -60,4 +60,12 @@ public class MemberService {
     public MemberFileDTO findFile(Long id) {
         return memberRepository.findFile(id);
     }
+
+    public void update(MemberDTO memberDTO) {
+        memberRepository.update(memberDTO);
+    }
+
+    public void delete(Long id) {
+        memberRepository.delete(id);
+    }
 }

@@ -87,4 +87,39 @@ public class MemberController {
 
     @GetMapping("/mypage")
     public String mypageForm() { return "memberPages/memberMyPage"; }
+
+    @GetMapping("/update")
+    public String updateForm(HttpSession session, Model model) {
+        // 세션에 들어있는 이메일 가져오기
+        String loginEmail = (String) session.getAttribute("loginEmail");
+        MemberDTO memberDTO = memberService.findByEmail(loginEmail);
+        model.addAttribute("member", memberDTO);
+        if (memberDTO.getProfileAttached() == 1) {
+            MemberFileDTO memberFileDTO = memberService.findFile(memberDTO.getId());
+            model.addAttribute("memberFile", memberFileDTO);
+        }
+        return "memberPages/memberUpdate";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute MemberDTO memberDTO) {
+        memberService.update(memberDTO);
+        return "memberPages/memberMyPage";
+    }
+
+    @GetMapping("/delete")
+    public String deleteForm(HttpSession session, Model model) {
+        // 세션에 들어있는 이메일 가져오기
+        String loginEmail = (String) session.getAttribute("loginEmail");
+        MemberDTO memberDTO = memberService.findByEmail(loginEmail);
+        model.addAttribute("member", memberDTO);
+        return "memberPages/memberPasswordCheck";
+    }
+
+    @PostMapping("/delete")
+    public String delete(@RequestParam("id") Long id) {
+        // 세션에 들어있는 이메일 가져오기
+        memberService.delete(id);
+        return "redirect:/member/logout";
+    }
 }

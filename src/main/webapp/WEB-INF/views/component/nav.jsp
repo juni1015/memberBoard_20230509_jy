@@ -32,15 +32,13 @@
         if (loginEmail == "admin") {
             menuArea.innerHTML = "<a href='/board/save'>글작성</a>" +
                                     "<a href='/board/list'>글목록</a>" +
-                                    "<a href='/member/mypage'>마이페이지</a>" +
                                     "<a href='/member/list'>관리자</a>";
-            loginArea.innerHTML = "<a href='/mypage' style='color: black;'>"+loginEmail +"님 환영해요!</a>"+
+            loginArea.innerHTML = "<a href='/member/mypage' style='color: black;'>"+loginEmail +"님 환영해요!</a>"+
                 "<a href='/member/logout'>logout</a>";
         } else {
             menuArea.innerHTML = "<a href='/board/save'>글작성</a>" +
-                                    "<a href='/board/list'>글목록</a>" +
-                                    "<a href='/member/mypage'>마이페이지</a>";
-            loginArea.innerHTML = "<a href='/mypage' style='color: black;'>"+loginEmail +"님 환영해요!</a>"+
+                                    "<a href='/board/list'>글목록</a>";
+            loginArea.innerHTML = "<a href='/member/mypage' style='color: black;'>"+loginEmail +"님 환영해요!</a>"+
                 "<a href='/member/logout'>logout</a>";
         }
     } else {

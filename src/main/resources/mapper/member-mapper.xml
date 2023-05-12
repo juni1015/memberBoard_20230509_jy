@@ -34,6 +34,16 @@
         select * from memberboard_memberfile_table where memberId = #{memberId}
     </select>
 
+    <update id="update" parameterType="member">
+        update memberboard_member_table
+        set memberPassword = #{memberPassword}, memberName = #{memberName}, memberMobile = #{memberMobile}
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        delete from memberboard_member_table where id =#{id}
+    </delete>
+
 </mapper>
 
 

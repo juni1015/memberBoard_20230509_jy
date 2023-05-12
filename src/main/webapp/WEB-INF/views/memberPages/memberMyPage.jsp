@@ -17,12 +17,18 @@
 <%@include file="../component/header.jsp"%>
 <%@include file="../component/nav.jsp"%>
 <div id="section">
-  <form action="/member/login" method="post" onsubmit="return login_check()">
-    <input type="text" name="memberEmail" id="member-email" placeholder="이메일">
-    <input type="text" name="memberPassword" id="member-password" placeholder="비밀번호">
-    <input type="submit" value="로그인">
-  </form>
+  <button onclick="member_update()">정보수정</button>
+  <button onclick="member_delete()">탈퇴</button>
 </div>
 <%@include file="../component/footer.jsp"%>
 </body>
+<script>
+  const member_update = () => {
+    location.href = "/member/update";
+  }
+
+  const member_delete = () => {
+    location.href = "/member/delete";
+  }
+</script>
 </html>
